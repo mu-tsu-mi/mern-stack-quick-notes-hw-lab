@@ -21,18 +21,17 @@ export default class SignUpForm extends Component {
         evt.preventDefault();
        
         try {
-          // We don't want to send the 'error' or 'confirm' property,
-          //  so let's make a copy of the state object, then delete them
-          const formData = {...this.state};
-          delete formData.error;
-          delete formData.confirm;
+          const {name, email, password} = this.state;
+          const formData = {name, email, password};
+     
           // The promise returned by the signUp service method 
           // will resolve to the user object included in the
           // payload of the JSON Web Token (JWT)
-          
-          // console.log('are you even here?')
+        
           const user = await signUp(formData);
-          console.log(user)
+          
+          // for React, to use user data
+          this.props.setUser(user)
         } catch {
           this.setState({ errror: "Sign Up Failed - Try Again" });
         }
