@@ -39,9 +39,15 @@ export function logOut() {
     localStorage.removeItem('token');
 }
 
-export async function login(userData) {
-    const token = await usersAPI.login(userData)
-    localStorage.setItem('token', token);
-    
-    return getUser()
+export async function login(credentials) {  
+  const token = await usersAPI.login(credentials)
+  localStorage.setItem('token', token);
+  
+  return getUser()
+}
+
+export default function checkToken() {
+  // checkToken returns a string, but let's make it a Date object for more flexibility
+  return usersAPI.checkToken()
+    .then(dateStr => new Date(dateStr));
 }
