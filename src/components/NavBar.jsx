@@ -1,3 +1,4 @@
+import './NavBar.css';
 import { Link } from 'react-router-dom';
 import * as userService from '../utilities/users-service';
 
@@ -13,11 +14,11 @@ export default function NavBar({user, setUser}) {
     <nav>
         <Link to="/orders">Order History</Link>
         &nbsp; | &nbsp;
-        <Link to="/orders/new">New Order</Link>
+        <Link to="/notes">My notes</Link>
         &nbsp;&nbsp;
         <span>Status: {user.name} is logged in</span>
         &nbsp;&nbsp;
-        <Link to='' onClick={handleLogOut}>Log Out</Link>
+        <Link to='' onClick={handleLogOut}><button className='logOut'>Log Out</button></Link>
 
     </nav>
     )
