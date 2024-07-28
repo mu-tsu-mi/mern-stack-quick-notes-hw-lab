@@ -1,8 +1,10 @@
+import './item.css';
 
 export default function Item({note}) {
     return (
-        <>
-            {note.text}
-        </>
+        <div className='item'>
+            <span>{note.text}</span>
+            <span>{note.createdAt.toLocaleString('en-AU')}</span>
+        </div>
     )
 }

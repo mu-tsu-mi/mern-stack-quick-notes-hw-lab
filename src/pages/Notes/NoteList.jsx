@@ -1,10 +1,11 @@
 import Item from './Item';
 
 export default function NoteList({notes}) {
+    
     return (
+        notes.length === 0 ? "No notes yet" : 
         <div>
-            <p>{notes.map((note, idx)=><Item note={note} key={idx} />)}</p>
+            <div>{notes.map((note, idx)=><Item note={note} key={idx} />)}</div>
         </div>
     )
 }
-/* No Notes Yet */

@@ -8,6 +8,10 @@ export async function getAll() {
     return sendRequest(BASE_URL);
 }
 
+export async function createNote(str) {
+  return sendRequest(BASE_URL, "POST", { text: str });
+}
+
 // Log in func - Before refactoring
 // export async function login(credentials) {
 //     const res = await fetch(`${BASE_URL}/login`, {
