@@ -1,11 +1,12 @@
 import './editNote.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as notesAPI from '../../utilities/notes-api';
 
 export default function EditNote() {
     const {noteId} = useParams()
     const [note, setNote] = useState({});
+    const navigate = useNavigate();
   
     useEffect(()=> {
         async function getNote() {
@@ -18,6 +19,7 @@ export default function EditNote() {
     async function handleUpdate(e) {
         e.preventDefault();
         await notesAPI.updateNote(noteId, note.text)
+        navigate('/notes')
     }
 
     return (
