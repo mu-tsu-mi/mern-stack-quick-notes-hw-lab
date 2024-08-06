@@ -9,6 +9,6 @@ router.post('/', notesCtrl.addNote);
 // DELETE /api/notes
 router.delete('/:id', notesCtrl.deleteNote)
 // GET /api/notes/:id
-// router.get('/:id', notesCtrl.show);
+router.get('/:id', notesCtrl.showNote);
 
 module.exports = router;

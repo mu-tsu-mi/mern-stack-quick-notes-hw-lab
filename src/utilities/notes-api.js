@@ -16,6 +16,10 @@ export async function deleteNote(id) {
   return sendRequest(`${BASE_URL}/${id}`, "DELETE")
 }
 
+export async function getNote(id) {
+  return sendRequest(`${BASE_URL}/${id}`)
+}
+
 // Log in func - Before refactoring
 // export async function login(credentials) {
 //     const res = await fetch(`${BASE_URL}/login`, {

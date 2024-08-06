@@ -26,8 +26,12 @@ export default function Notes() {
   }
 
   async function handleDeleteNote(id) {
-    const note = await notesAPI.deleteNote(id)
-    setNotes(note)
+    try {
+      await notesAPI.deleteNote(id)
+      setNotes(notes.filter((note)=> note.id !== id ))
+    } catch(err) {
+      console.log('Something went wrong', err)
+    }
   }
 
   return (

@@ -3,7 +3,8 @@ const Note = require('../../models/note');
 module.exports = {
     index,
     addNote,
-    deleteNote
+    deleteNote,
+    showNote
 }
 
 async function index(req, res) {
@@ -21,6 +22,11 @@ async function addNote(req, res) {
 
 async function deleteNote(req, res) {
     await Note.deleteOne({_id: req.params.id})
-    const notes = await Note.find({ user: req.user._id }).exec();
-    res.json(notes)
+    // const notes = await Note.find({ user: req.user._id }).exec();
+    res.json({message: 'note deleted'})
+}
+
+async function showNote(req, res) {
+    const note = await Note.findById(req.params.id).exec();
+    res.json(note)
 }
