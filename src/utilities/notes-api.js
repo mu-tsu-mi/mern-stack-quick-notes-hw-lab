@@ -20,6 +20,10 @@ export async function getNote(id) {
   return sendRequest(`${BASE_URL}/${id}`)
 }
 
+export async function updateNote(id, text) {
+  return sendRequest(`${BASE_URL}/${id}`, "PUT", { text: text } );
+}
+
 // Log in func - Before refactoring
 // export async function login(credentials) {
 //     const res = await fetch(`${BASE_URL}/login`, {

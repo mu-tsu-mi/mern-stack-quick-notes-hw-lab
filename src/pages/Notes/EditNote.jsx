@@ -7,17 +7,24 @@ export default function EditNote() {
     const {noteId} = useParams()
     const [note, setNote] = useState({});
   
-  useEffect(()=> {
-    async function getNote() {
-      const note = await notesAPI.getNote(noteId)
-      setNote(note)
-    }
-    getNote()
-  }, [noteId])
+    useEffect(()=> {
+        async function getNote() {
+            const note = await notesAPI.getNote(noteId)
+            setNote(note)
+        }
+        getNote()
+    }, [noteId])
 
-    return (<form className='editForm'>
-            <label>note</label>
-            <input value={note.text}></input>
+    async function handleUpdate(e) {
+        e.preventDefault();
+        await notesAPI.updateNote(noteId, note.text)
+    }
+
+    return (
+            <form className='editForm'>
+                <label>note</label>
+                <input value={note.text} onChange={(e)=> { setNote({...note, text: e.target.value}) }}></input>
+                <span><button type='submit' onClick={handleUpdate}>Update</button></span>
             </form>
     )
 }

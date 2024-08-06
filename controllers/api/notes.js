@@ -4,7 +4,8 @@ module.exports = {
     index,
     addNote,
     deleteNote,
-    showNote
+    showNote,
+    updateNote
 }
 
 async function index(req, res) {
@@ -28,5 +29,12 @@ async function deleteNote(req, res) {
 
 async function showNote(req, res) {
     const note = await Note.findById(req.params.id).exec();
+    res.json(note)
+}
+
+async function updateNote(req, res) {
+    const note = await Note.findById(req.params.id).exec();
+    note.text = req.body.text
+    note.save();
     res.json(note)
 }
